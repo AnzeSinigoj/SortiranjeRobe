@@ -1,4 +1,4 @@
 # SortiranjeRobe
 Tu sortira stvari
 
-Janko je odsel po kruh.
+Janko je odseden s kruhom.
