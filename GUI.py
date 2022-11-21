@@ -22,11 +22,23 @@ button  = tk.Button(root, text = "Izberi mapo!", command=open)
 button.place(relx=0.5, rely=0.3, anchor="n")
 
 def sorting():
-    os.mkdir("./Audio")
-    os.mkdir("./Documents")
-    os.mkdir("./Video")
-    os.mkdir("./Pictures")
-    os.mkdir("./Other")
+
+    dirlist  = os.listdir(source)
+    filteredList = []
+
+    #ne dela se haha
+    audio = source+"/Audio"
+    docs = source+"/Documents"
+    video =source+"/Video"
+    pics = source+"/Pictures"
+    other = source+"/Other"
+
+    os.mkdir(audio)
+    os.mkdir(docs)
+    os.mkdir(video)
+    os.mkdir(pics)
+    os.mkdir(other)
+
     audiodst = "./Audio"
     audioext = ["mp3", "wav", "flac", "m4a", "ogg"]
     docsdst = "./Documents"
@@ -36,18 +48,16 @@ def sorting():
     picsdst = "./Pictures"
     picsext = ["jpg", "png", "gif", "jpeg", "svg", "tiff", "tif"]
 
-    filteredList = []
-    dirlist  = os.listdir(source)
 
     for z in dirlist:
         for i in list (z):
             if i == ".":
                 filteredList.append(z)
 
+
     print ("Sorting...")
     for x in filteredList:
         _, ext = x.split ('.')
-        #print (ext)
         for y in docsext:
             if ext == y:
                 temp1 = os.path.join(source, x)
@@ -55,7 +65,6 @@ def sorting():
 
     for x in filteredList:
         _, ext = x.split ('.')
-        #print (ext)
         for y in audioext:
             if ext == y:
                 temp1 = os.path.join(source, x)

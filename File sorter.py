@@ -3,11 +3,20 @@ from shutil  import move
 import shutil 
 
 source = input("Vnesite pot do izvirne mape: ")
-os.mkdir("./Audio")
-os.mkdir("./Documents")
-os.mkdir("./Video")
-os.mkdir("./Pictures")
-os.mkdir("./Other")
+
+#ne dela se haha
+audio = source+"/Audio"
+docs = source+"/Documents"
+video = source+"/Video"
+pics = source+"/Pictures"
+other = source+"/Other"
+
+os.mkdir(audio)
+os.mkdir(docs)
+os.mkdir(video)
+os.mkdir(pics)
+os.mkdir(other)
+
 audiodst = "./Audio"
 audioext = ["mp3", "wav", "flac", "m4a", "ogg"]
 docsdst = "./Documents"
