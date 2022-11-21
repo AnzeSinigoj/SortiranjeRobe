@@ -28,13 +28,13 @@ def sorting():
     os.mkdir("./Pictures")
     os.mkdir("./Other")
     audiodst = "./Audio"
-    audioext = ["mp3", "wav", "flac"]
+    audioext = ["mp3", "wav", "flac", "m4a", "ogg"]
     docsdst = "./Documents"
-    docsext = ["docx", "pdf", "txt"]
+    docsext = ["docx", "pdf", "txt", "doc", "html", "htm", "xls", "xlsx","ppt", "pptx", "odp", "key" ]
     videodst = "./Video"
-    videoext = ["mp4", "avi", "mov",]
+    videoext = ["mp4", "avi", "mov","flv", "avchd"]
     picsdst = "./Pictures"
-    picsext = ["jpg", "png", "gif", "jpeg"]
+    picsext = ["jpg", "png", "gif", "jpeg", "svg", "tiff", "tif"]
 
     filteredList = []
     dirlist  = os.listdir(source)
@@ -83,7 +83,7 @@ def sorting():
         src_path  = os.path.join(source, f)
         dst_path = os.path.join(destination, f)
         shutil.move(src_path, dst_path)
-        
+         
     label3 = tk.Label(text="Sortiranje končano!")
     label3.place(relx=0.5, rely=0.80, anchor = "center")
 
