@@ -22,77 +22,82 @@ button  = tk.Button(root, text = "Izberi mapo!", command=open)
 button.place(relx=0.5, rely=0.3, anchor="n")
 
 def sorting():
-
-    dirlist  = os.listdir(source)
-    filteredList = []
-
-    #ne dela se haha
-    audio = source+"/Audio"
-    docs = source+"/Documents"
-    video =source+"/Video"
-    pics = source+"/Pictures"
-    other = source+"/Other"
-
-    os.mkdir(audio)
-    os.mkdir(docs)
-    os.mkdir(video)
-    os.mkdir(pics)
-    os.mkdir(other)
-
-    audiodst = "./Audio"
+  
     audioext = ["mp3", "wav", "flac", "m4a", "ogg"]
-    docsdst = "./Documents"
     docsext = ["docx", "pdf", "txt", "doc", "html", "htm", "xls", "xlsx","ppt", "pptx", "odp", "key" ]
-    videodst = "./Video"
     videoext = ["mp4", "avi", "mov","flv", "avchd"]
-    picsdst = "./Pictures"
     picsext = ["jpg", "png", "gif", "jpeg", "svg", "tiff", "tif"]
+
+    audiodst = os.path.join(source, "Audio")
+    docsdst = os.path.join(source, "Documents")
+    videodst = os.path.join(source, "Video")
+    picsdst = os.path.join(source, "Pictures")
+    otherdst = os.path.join(source, "Others")
+
+    paths = [audiodst, docsdst, videodst, picsdst, otherdst]
+
+    for i in paths:
+        if os.path.exists(i):
+            pass
+        else:
+            os.mkdir(i)
+
+    filteredList =[]
+
+    dirlist = os.listdir(source)
 
 
     for z in dirlist:
         for i in list (z):
             if i == ".":
                 filteredList.append(z)
+    print (filteredList)
 
+    def sorting():
+        print ("Entering sorting stage...")
+        for x in filteredList:
+            arr = x.split ('.')
+            ext = arr[-1]
+            for y in docsext:
+                if ext == y:
+                    temp1 = os.path.join(source, x)
+                    move(temp1, docsdst)
 
-    print ("Sorting...")
-    for x in filteredList:
-        _, ext = x.split ('.')
-        for y in docsext:
-            if ext == y:
-                temp1 = os.path.join(source, x)
-                move(temp1, docsdst)
+        for x in filteredList:
+            arr = x.split ('.')
+            ext = arr[-1]
+            for y in audioext:
+                if ext == y:
+                    temp1 = os.path.join(source, x)
+                    move(temp1, audiodst)
 
-    for x in filteredList:
-        _, ext = x.split ('.')
-        for y in audioext:
-            if ext == y:
-                temp1 = os.path.join(source, x)
-                move(temp1, audiodst)
+        for x in filteredList:
+            arr = x.split ('.')
+            ext = arr[-1]
+            for y in videoext:
+                if ext == y:
+                    temp1 = os.path.join(source, x)
+                    move(temp1, videodst)
+        
+        for x in filteredList:
+            arr = x.split ('.')
+            ext = arr[-1]
+            for y in picsext:
+                if ext == y:
+                    temp1 = os.path.join(source, x)
+                    move(temp1, picsdst)
+        
+        ost = []
+        for path in os.listdir(source):
+            if os.path.isfile(os.path.join(source, path)):
+                ost.append(path)
 
-    for x in filteredList:
-        _, ext = x.split ('.')
-        #print (ext)
-        for y in videoext:
-            if ext == y:
-                temp1 = os.path.join(source, x)
-                move(temp1, videodst)
+        for i in ost:
+            temp1 = os.path.join(source, i)
+            move(temp1, otherdst)
 
-    for x in filteredList:
-        _, ext = x.split ('.')
-        #print (ext)
-        for y in picsext:
-            if ext == y:
-                temp1 = os.path.join(source, x)
-                move(temp1, picsdst)
-
-    destination = "./Other"
-    allfiles = os.listdir(source)
-    for f in allfiles:
-        src_path  = os.path.join(source, f)
-        dst_path = os.path.join(destination, f)
-        shutil.move(src_path, dst_path)
-         
+    sorting()
+        
     label3 = tk.Label(text="Sortiranje končano!")
     label3.place(relx=0.5, rely=0.80, anchor = "center")
 
