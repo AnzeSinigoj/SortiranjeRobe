@@ -8,6 +8,7 @@
 
 **Privzetno sortiranje:**
   Sortira tako, da naredi mape v mapiki ste jo izbrali ter v njih premakne vse datoteke,ki so v mapi.
+  
   Mape ki jih naredi v določeni mapi: (Documents, Pictures, Videos, Audio in Others)
 
 **Sortiranje po meri:**
